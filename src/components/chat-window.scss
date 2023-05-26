@@ -1,0 +1,18 @@
+.chat-window {
+    padding: 0;
+    max-height: 100%;
+    overflow: auto;
+    flex: 1 1;
+
+    .chat-section {
+        flex: 1 1;
+        min-width: 300px;
+
+    }
+
+    .chat-header {
+        background-color: #f0f5ff;
+        box-shadow: 0 2px 2px #ccc;
+        margin-bottom: 2px;
+    }
+}
