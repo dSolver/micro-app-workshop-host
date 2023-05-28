@@ -1,20 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { useOnlineUsers } from '../hooks/useOnlineUsers';
-import { Box, Button, Icon, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
-import { ErrorBoundary } from 'react-error-boundary';
+import { Box, Button, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import loadable from '@loadable/component'
 import './online-users.scss';
-import { CommunicationService } from '../services/communication.service';
-import { registeredWidgets } from './widgets';
-
-const HelloWidget = loadable(() => import('starter/HelloWidget'), {
-    fallback: <Typography>Loading HelloWidget...</Typography>,
-
-});
-const Coupled = loadable(() => import('starter/Coupled'), {
-    fallback: <Typography>Loading Coupled...</Typography>,
-});
+import { registeredWidgets } from './UserWidgets';
 
 export interface OnlineUsersProps {
     room?: string

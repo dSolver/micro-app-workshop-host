@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import { ChatRoom } from "../components/ChatRoom";
-import { User } from "../components/user";
+import { UserPage } from "../components/user";
 import { Typography } from "@mui/material";
 import loadable from "@loadable/component";
 import starterRoutes from "./starter";
@@ -12,7 +12,7 @@ const defaultRoutes: RouteObject[] = [
         element: <ChatRoom />
     }, {
         path: "/users/:username",
-        element: <User />
+        element: <UserPage />
     },
     {
         path: "*",
