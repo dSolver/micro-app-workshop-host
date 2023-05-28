@@ -11,7 +11,7 @@ export const Login = () => {
     return (
         <Box className="login" padding={1}>
             <Stack direction='column' gap={2} alignItems="center">
-                <Typography variant="h1">Hey, Sup</Typography>
+                <Typography variant="h1">Sup?</Typography>
 
                 <form onSubmitCapture={(e) => {
                     e.preventDefault();
@@ -22,7 +22,7 @@ export const Login = () => {
                             setUsername(e.target.value);
                         }} error={!!error} />
 
-                        <Button type="submit">Wazuuup</Button>
+                        <Button type="submit">Wazzup</Button>
                     </Stack>
 
                     {error && <Typography variant="body1" color="error">{error}</Typography>}

@@ -141,14 +141,28 @@ export class CommunicationService {
         }
     }
 
+    /**
+     * creates a room, not yet ready for use
+     * @param room 
+     * @param isPrivate 
+     */
     createRoom(room: string, isPrivate: boolean) {
         this.mainSocket.emit(MessageType.CREATE_ROOM, room, isPrivate);
     }
 
+    /**
+     * Adds a room to the list of available rooms, client-side only
+     * @param room 
+     */
     addAvailableRoom(room: RoomInfo) {
         this.availableRooms[room.name] = room;
     }
 
+    /**
+     * Sends a chat message to the server, optionally to a specific room
+     * @param msg 
+     * @param room 
+     */
     sendMessage(msg: string, room?: string) {
         if (room) {
             this.rooms.get(room)?.socket.emit(MessageType.CHAT_MESSAGE, msg);
@@ -157,11 +171,17 @@ export class CommunicationService {
         }
     }
 
+    /**
+     * returns a list of messages for a given room, or the main room if none is specified
+     * @param room 
+     * @returns 
+     */
     getMessages(room?: string) {
         const context = this.rooms.get(room ?? '')
         if (context) {
             return [...context.messages];
         }
+        // main room messages are empty
         return [];
     }
 
@@ -169,6 +189,11 @@ export class CommunicationService {
         this.mainSocket.emit(MessageType.LIST_ROOMS);
     }
 
+    /**
+     * Adds the event listeners to a socket
+     * @param socket 
+     * @param room 
+     */
     setupSocketListeners(socket: Socket, room?: string) {
         socket.on('connect', () => {
             this.messageSubject.next({
@@ -235,6 +260,7 @@ export class CommunicationService {
         })
 
         socket.on(MessageType.USERNAME_ERROR, (errorMessage: string) => {
+            // locally stored username is invalid, so erase it
             this.removeUserName();
 
             this.messageSubject.next({

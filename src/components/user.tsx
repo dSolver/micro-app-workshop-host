@@ -1,13 +1,17 @@
-import { Box, Stack, Typography } from '@mui/material';
+/**
+ * An example of a component that is remotely loading components for a page
+ */
+
 import React from 'react'
+import { Box, Stack, Typography } from '@mui/material';
 import { withErrorBoundary } from 'react-error-boundary';
 import { useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { CommunicationService } from '../services/communication.service';
-import HelloWidget from 'starter/HelloWidget';
+
 
 const Coupled = loadable(() => import('starter/Coupled'));
-
+const HelloWidget = loadable(() => import('starter/HelloWidget'));
 export const User = () => {
 
     const params = useParams();

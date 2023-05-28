@@ -14,3 +14,10 @@ declare module "starter/Coupled" {
     export declare const Coupled: React.ForwardRefExoticComponent<CoupledProps & React.RefAttributes<any>>;
     export default Coupled;
 }
+
+declare module "starter/externalRoutes" {
+    import { RouteObject } from "react-router-dom";
+
+    export declare const routes: RouteObject[];
+    export default routes;
+}

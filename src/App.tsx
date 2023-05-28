@@ -1,35 +1,35 @@
-import './App.scss';
-
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
-    createBrowserRouter,
     RouterProvider,
+    RouteObject,
+    createBrowserRouter
 } from "react-router-dom";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { ChatRoom } from './components/ChatRoom';
-import { User } from './components/user';
-import { Typography } from '@mui/material';
+import './App.scss';
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <ChatRoom />
-    }, {
-        path: "user/:username",
-        element: <User />
-    },
-    {
-        path: "*",
-        element: <Typography>404, page does not exist</Typography>
-    }
-])
+import { getRoutesWithRemote, getRoutesOnlyLocal } from './routes';
+
 function App() {
+    const [routes, setRoutes] = React.useState<RouteObject[]>([]);
+    useEffect(() => {
+        console.log("Loading routes");
+        getRoutesWithRemote().then((routes) => {
+            setRoutes(routes);
+        }).catch((e) => {
+            console.error(e);
+        });
+    }, [])
+
+    if (routes.length === 0) {
+        return null;
+    }
+
     return (
-        <RouterProvider router={router} />
+        <RouterProvider router={createBrowserRouter(routes)} />
     )
 }
 

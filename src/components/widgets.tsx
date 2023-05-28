@@ -5,12 +5,24 @@ import loadable from '@loadable/component';
 import { CommunicationService } from '../services/communication.service';
 import { UserPage } from './user';
 
+const HelloWidget = loadable(() => import('starter/HelloWidget'), {
+    fallback: <Typography>Loading HelloWidget...</Typography>,
+});
+
+const Coupled = loadable(() => import('starter/Coupled'), {
+    fallback: <Typography>Loading Notes...</Typography>,
+});
+
+const service = new CommunicationService();
+
 export const registeredWidgets: Record<string, (param: string) => React.ReactNode> = {
     'starter': (param: string) => {
         return (
             <ErrorBoundary fallback={<Typography color="error"> Failed to load the <em>starter</em></Typography>}>
-                <UserPage username="starter" />
+                <HelloWidget sayHello={param} />
+                <Coupled service={service} />
             </ErrorBoundary>
         )
-    }
+    },
+
 }

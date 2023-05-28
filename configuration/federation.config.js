@@ -55,32 +55,30 @@ federationConfig = {
           })
           `
   },
-  exposes: {
-    "./HelloWidget": "./src/components/HelloWidget/HelloWidget.tsx"
-  },
+  exposes: {},
   shared: {
     "react": {
-      "requiredVersion": "18.2",
+      "requiredVersion": "^18.2",
       "singleton": true,
       "eager": true
     },
     "react-dom": {
-      "requiredVersion": "18.2",
+      "requiredVersion": "^18.2",
       "singleton": true,
       "eager": true
     },
     "@mui/material": {
-      "requiredVersion": "5.11.10",
+      "requiredVersion": "^5.11.10",
       "singleton": true,
       "eager": true
     },
     "@emotion/react": {
-      "requiredVersion": "11.10.6",
+      "requiredVersion": "^11.10.6",
       "singleton": true,
       "eager": true
     },
     "@emotion/styled": {
-      "requiredVersion": "11.10.6",
+      "requiredVersion": "^11.10.6",
       "singleton": true,
       "eager": true
     },
@@ -118,11 +116,16 @@ federationConfig = {
       "requiredVersion": "^4.6.1",
       "singleton": true,
       "eager": true
+    },
+    "react-router-dom": {
+      "requiredVersion": "^6.11.2",
+      "singleton": true,
+      "eager": true
     }
   }
 }
 
-if (stage === "prod" || true) {
+if (stage === "prod") {
   // do not provide override capability
   federationConfig.remotes = Object.keys(remoteUrls.prod).reduce((s, k) => {
     return {

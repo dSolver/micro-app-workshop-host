@@ -16,7 +16,10 @@ export const ChatInput = ({ room }: ChatInputProps) => {
             <form autoComplete='off' ref={formRef} onSubmitCapture={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                service.sendMessage(message, room);
+                if (message.trim().length > 0) {
+                    service.sendMessage(message.trim(), room);
+                }
+                
                 setMessage('');
             }}>
                 <Stack direction="row" spacing={2} alignItems="center">
