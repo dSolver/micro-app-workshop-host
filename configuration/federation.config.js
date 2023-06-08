@@ -6,7 +6,6 @@ const stage = process.env.BUILD_STAGE ?? "beta";
 
 const participants = {
   starter: "http://localhost:4001/remoteEntry.js",
-  daccheng: "http://localhost:4003/remoteEntry.js",
 };
 
 const remoteUrls = {
@@ -164,6 +163,9 @@ function dynamicRemote(name, useUrlParams) {
     script.onload = () => {
       // the injected script has loaded and is available on window
       // we can now resolve this Promise
+      if(!window['${name}']) {
+        reject('remote container not found')
+      }
       const proxy = {
         get: (request) => window['${name}'].get(request),
         init: (arg) => {

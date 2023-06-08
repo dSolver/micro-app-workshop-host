@@ -87,9 +87,8 @@ const config = {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    client: {
-      overlay: false
-    }
+    client: false,
+    hot: false
   },
   performance: {
     hints: false
