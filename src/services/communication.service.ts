@@ -68,7 +68,7 @@ export class CommunicationService {
 
     private username: string = "";
 
-    constructor(_location: string = 'http://localhost:80') {
+    constructor(_location: string = 'http://localhost:8080') {
         this.location = _location;
         this.mainSocket = io(this.location);
         this.setupSocketListeners(this.mainSocket);
